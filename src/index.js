@@ -4,6 +4,8 @@ import './index.css';
 import App from './components/App';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
+
+
 // initiating apollo client; setting headers for query
 const client = new ApolloClient({
   uri: 'https://staging.api.wissenwirkt.com/api/graphql',

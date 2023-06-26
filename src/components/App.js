@@ -2,6 +2,7 @@ import '../App.css';
 import { useQuery, gql } from '@apollo/client';
 import Login from './Login';
 
+
 // define query for learnOpportunities
 const GET_COURSES = gql`
   query GetCourses {
@@ -35,6 +36,7 @@ function DisplayCourses() {
       <p>{shortDescription}</p>
     </div>
   ));
+  // TODO: filtering option 
 }
 
 const App = () => {

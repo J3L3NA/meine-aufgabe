@@ -29,14 +29,17 @@ function LoginPage() {
   const [login, { data , loading, error }] = useMutation(LOGIN_MUTATION);
   console.log(data);
 
+
   if (loading) return 'Submitting...';
   if (error) return `Submission error! ${error.message}`;
 
   // storing token and id in local storage (currently not working)
+
   // localStorage.setItem("X-Auth-Token", JSON.stringify(data.Auth.login.token));
   // localStorage.setItem("X-Auth-Account-Id", JSON.stringify(data.Auth.login.accounts.id));
 
   // login form
+  // TODO: route to courses page when succesfully logged in 
   return (
     <div className="container">
       <form>
