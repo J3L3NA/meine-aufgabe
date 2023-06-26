@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  padding: 10px;
+  margin: 30px 25%;
+  border-radius: 5px;
+}
+
+.form-div {
+  /* border: solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+}
+
+.input-field {
+  border: solid rgba(0, 0, 255, 0.127);
+  padding: 4px;
+  border-radius: 5px;
+}
+
+input::placeholder {
+  color: rgb(179, 179, 179);
+}
+
+#login-button {
+  color:rgba(0, 0, 59, 0.7);
+  font-weight: 400;
+  border: solid rgba(0, 0, 59, 0.7);
+  background-color: white;
+  padding: 3px 7px;
+  border-radius: 5px;
+}
