@@ -26,20 +26,25 @@ function LoginPage() {
   const [password, setPassword] = useState('');
 
   // passing mutation to useMutation
-  const [login, { data , loading, error }] = useMutation(LOGIN_MUTATION);
-  console.log(data);
+  const [login, { loading, error }] = useMutation(LOGIN_MUTATION, {
+    onCompleted: (data) => {
+      // storing token and id in local storage
+      localStorage.setItem("X-Auth-Token", JSON.stringify(data.Auth.login.token));
+      localStorage.setItem("X-Auth-Account-Id", JSON.stringify(data.Auth.login.accounts[0].id));
+    }
+  });
+  // console.log(localStorage.getItem("X-Auth-Token"));
+  // console.log(localStorage.getItem("X-Auth-Account-Id"));
+
 
 
   if (loading) return 'Submitting...';
   if (error) return `Submission error! ${error.message}`;
 
-  // storing token and id in local storage (currently not working)
 
-  // localStorage.setItem("X-Auth-Token", JSON.stringify(data.Auth.login.token));
-  // localStorage.setItem("X-Auth-Account-Id", JSON.stringify(data.Auth.login.accounts.id));
 
   // login form
-  // TODO: route to courses page when succesfully logged in 
+  // TODO: route to courses page when succesfully logged in
   return (
     <div className="container">
       <form>
@@ -60,7 +65,10 @@ function LoginPage() {
         <div className="form-div">
           <button id="login-button"
             onClick={
-              () => login({ variables: { email, password } })
+              (event) => {
+                event.preventDefault();
+                login({variables: { email, password }})
+              }
             }
             >
             Log in
