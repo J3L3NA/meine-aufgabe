@@ -1,50 +1,22 @@
 import '../App.css';
-import { useQuery, gql } from '@apollo/client';
 import Login from './Login';
-
-
-// define query for learnOpportunities
-const GET_COURSES = gql`
-  query GetCourses {
-    LearnV2 {
-      SearchLearnOpportunities(first: 20) {
-        edges {
-          node {
-            id
-            shortDescription
-            structureDefinition {title}
-            image {url}
-          }
-        }
-      }
-    }
-  }
-`;
-
-function DisplayCourses() {
-  // passing query to useQuery
-  const { loading, error, data } = useQuery(GET_COURSES);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;  //Error : {error.message}
-
-  // mapping course information to divs
-  return data.LearnV2.SearchLearnOpportunities.edges.node.map(({ id, shortDescription, structureDefinition, image  }) => (
-    <div key={id}>
-      <h3>{structureDefinition.title}</h3>
-      <img width="400" height="250" alt="course-icon" src={`${image.url}`} />
-      <p>{shortDescription}</p>
-    </div>
-  ));
-  // TODO: filtering option
-}
+import Courses from './Courses';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div>
-      <Login />
-      <DisplayCourses />
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route path="/courses">
+            <Courses />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
